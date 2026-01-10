@@ -1,1 +1,42 @@
 \chapter{Analyse}
+\label{ch:analyse}
+
+Voordat de ontwikkeling start, is het cruciaal om de vereisten van de applicatie helder in kaart te brengen. In dit hoofdstuk beschrijven we de functionele en niet-functionele vereisten van de digitale ondertekenmodule binnen Recytix, evenals de gewenste flow voor de eindgebruiker.
+
+\section{Functionele Vereisten}
+De applicatie moet de volgende kernfunctionaliteiten bieden:
+
+\begin{itemize}
+    \item \textbf{Documentweergave:} De gebruiker moet het te ondertekenen document (PDF-formaat) duidelijk kunnen inzien in de browser, zonder externe software te hoeven downloaden.
+    \item \textbf{SMS-Authenticatie (2FA):} Om de identiteit van de ondertekenaar te verifiëren, moet er een verificatiecode per SMS worden verstuurd. De gebruiker kan het document pas ondertekenen na het correct invoeren van deze code.
+    \item \textbf{Audit Trail:} Elke stap in het proces moet worden gelogd. Dit omvat: het openen van het document, het aanvragen van de SMS-code, en het succesvol invoeren van de code. Dit logboek dient als bewijs voor de juridische geldigheid.
+    \item \textbf{Statusbeheer:} Het systeem moet bijhouden of een document 'In behandeling', 'Getekend' of 'Geweigerd' is.
+\end{itemize}
+
+\section{Niet-functionele Vereisten}
+Naast de functies zijn er ook kwaliteitserisen:
+\begin{itemize}
+    \item \textbf{Veiligheid:} De communicatie tussen client en server moet versleuteld zijn. Persoonsgegevens (zoals telefoonnummers) moeten veilig worden verwerkt.
+    \item \textbf{Integratie:} De module moet visueel en technisch naadloos integreren in de bestaande Recytix-omgeving (huisstijl, login-sessie).
+    \item \textbf{Responsiviteit:} De interface moet werken op zowel desktop als mobiele apparaten, aangezien gebruikers vaak ondertekenen via hun smartphone.
+\end{itemize}
+
+\section{Gewenste Flow (User Journey)}
+Het proces voor de eindgebruiker ziet er als volgt uit:
+
+\begin{enumerate}
+    \item \textbf{Notificatie:} De gebruiker ontvangt een verzoek (bijvoorbeeld via e-mail of in het portaal) om een document te ondertekenen.
+    \item \textbf{Inzage:} De gebruiker opent de link en ziet het document in de Recytix-interface.
+    \item \textbf{Actie:} De gebruiker klikt op de knop "Ondertekenen".
+    \item \textbf{Verificatie:} Het systeem stuurt automatisch een 6-cijferige code naar het geregistreerde mobiele nummer van de gebruiker.
+    \item \textbf{Bevestiging:} De gebruiker voert de code in op het scherm.
+    \item \textbf{Afronding:} Bij een correcte code wordt het document gemarkeerd als 'Getekend'. De audit trail wordt weggeschreven en de gebruiker krijgt een succesmelding.
+\end{enumerate}
+
+\section{Datamodel}
+Om dit proces te ondersteunen, moeten in de database minimaal de volgende entiteiten worden opgeslagen:
+\begin{itemize}
+    \item \textbf{Document:} Metadata over het bestand (bestandsnaam, locatie, eigenaar).
+    \item \textbf{SignRequest:} De koppeling tussen een document en een ondertekenaar, inclusief de huidige status.
+    \item \textbf{AuditLog:} Een chronologische lijst van events (tijdstempel, actie, IP-adres, gebruiker).
+\end{itemize}
