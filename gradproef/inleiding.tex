@@ -1,50 +1,49 @@
-%%=============================================================================
-%% Inleiding
-%%=============================================================================
-
-\chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
+\chapter{Inleiding}
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+In dit inleidende hoofdstuk schetsen we de context van het project, definiëren we de probleemstelling en formuleren we de doelstellingen. Daarnaast bakenen we de scope van het project af en geven we een overzicht van de structuur van deze scriptie.
 
+\section{Probleemstelling}
+\label{sec:probleemstelling}
+Het platform Recytix heeft momenteel geen geïntegreerd systeem om documenten digitaal te laten ondertekenen. Voor cruciale documenten, zoals bijvoorbeeld verkoopovereenkomsten of mandaten, is een efficiënt en juridisch sluitend proces essentieel. Het ontbreken van deze functionaliteit zorgt voor administratieve vertragingen en een minder vlotte klantervaring.
+
+Dit project vult die nood in door een specifieke module te ontwikkelen die naadloos aansluit op het bestaande ecosysteem.
+
+\section{Doelstelling}
+\label{sec:doelstelling}
+Het hoofddoel van deze bachelorproef is het bouwen van een werkend prototype van een digitale handtekeningmodule binnen Recytix. 
+
+Concreet zijn de subdoelen:
 \begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
+    \item Het creëren van een algemeen toepasbare oplossing waarmee gebruikers documenten kunnen inzien.
+    \item Het implementeren van een ondertekenflow via een SMS-code (Two-Factor Authentication).
+    \item Het garanderen van juridische geldigheid door middel van een sluitende audit trail (logboek van acties).
 \end{itemize}
 
-\section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
-\label{sec:probleemstelling}
+\section{Onderzoeksvragen}
+\label{sec:onderzoeksvragen}
+Op basis van de probleemstelling en doelstelling formuleren we de volgende centrale onderzoeksvraag:
+\begin{quote}
+    \textit{Hoe kan een digitale handtekeningmodule met SMS-integratie en audit trail geïntegreerd worden in het Recytix-platform om het contractproces te digitaliseren?}
+\end{quote}
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+\section{Methodologie}
+\label{sec:methodologie}
+Voor de ontwikkeling van deze applicatie wordt gebruikgemaakt van de volgende technologieën:
+\begin{itemize}
+    \item \textbf{Frontend:} React voor de gebruikersinterface.
+    \item \textbf{Backend:} C\# (.NET) voor de API en logica.
+    \item \textbf{Database:} PostgreSQL voor dataopslag en de audit trail.
+\end{itemize}
 
-\section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
-\label{sec:onderzoeksvraag}
+De ontwikkeling verloopt iteratief, waarbij eerst de analyse en architectuur worden opgezet, gevolgd door de implementatie van de backend en vervolgens de frontend.
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
-
-\section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
-\label{sec:onderzoeksdoelstelling}
-
-Wat is het beoogde resultaat van je graduaatsproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
-
-\section{\IfLanguageName{dutch}{Opzet van deze graduaatsproef}{Structure of this associate thesis}}%
-\label{sec:opzet-graduaatsproef}
-
-% Het is gebruikelijk aan het einde van de inleiding een overzicht te
-% geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
-% die je kan aanvullen/aanpassen in functie van je eigen tekst.
-
-De rest van deze graduaatsproef is als volgt opgebouwd:
-
-In Hoofdstuk~\ref{ch:stand-van-zaken} wordt een overzicht gegeven van de stand van zaken binnen het onderzoeksdomein, op basis van een literatuurstudie.
-
-In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
-
-% TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
-
-In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+\section{Opzet van de thesis}
+\label{sec:opzet}
+De rest van deze scriptie is als volgt opgebouwd:
+\begin{itemize}
+    \item \textbf{Hoofdstuk \ref{ch:analyse} (Analyse)} bespreekt de vereisten en het functionele ontwerp.
+    \item \textbf{Hoofdstuk \ref{ch:technologie} (Technologie)} gaat dieper in op de gekozen tools en frameworks.
+    \item \textbf{Hoofdstuk \ref{ch:implementatie} (Implementatie)} beschrijft de technische uitwerking en de code.
+    \item \textbf{Hoofdstuk \ref{ch:conclusie} (Conclusie)} vat de resultaten samen en blikt vooruit naar mogelijke uitbreidingen.
+\end{itemize}
