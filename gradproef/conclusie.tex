@@ -1,18 +1,28 @@
-%%=============================================================================
-%% Conclusie
-%%=============================================================================
-
-\chapter{Conclusie}%
+\chapter{Conclusie}
 \label{ch:conclusie}
 
-% TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de
-% onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en
-% hoe biedt dit meerwaarde aan het vakgebied/doelgroep? 
-% Reflecteer kritisch over het resultaat. In Engelse teksten wordt deze sectie
-% ``Discussion'' genoemd. Had je deze uitkomst verwacht? Zijn er zaken die nog
-% niet duidelijk zijn?
-% Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
-%onderzoek?
+In deze scriptie hebben we een digitale handtekeningmodule ontwikkeld en geïntegreerd in het Recytix-platform. Het doel was om het contractproces, dat voorheen tijdrovend en handmatig verliep, te digitaliseren en te beveiligen.
 
-\lipsum[76-80]
+\section{Evaluatie van de doelstellingen}
+In de inleiding formuleerden we de doelstelling om een werkend prototype te bouwen met SMS-verificatie en een juridische audit trail. 
 
+We kunnen concluderen dat deze doelstellingen behaald zijn:
+\begin{itemize}
+    \item \textbf{Integratie:} De module draait succesvol binnen de Recytix-omgeving. Gebruikers kunnen documenten inzien zonder de applicatie te verlaten.
+    \item \textbf{Veiligheid:} De Two-Factor Authentication (2FA) via SMS werkt correct en zorgt voor de noodzakelijke identiteitsverificatie.
+    \item \textbf{Traceerbaarheid:} Elke actie wordt vastgelegd in de database (audit trail), waardoor er achteraf altijd bewijs is van wie wanneer getekend heeft.
+\end{itemize}
+
+De keuze voor de technologie-stack (React, .NET en PostgreSQL) is succesvol gebleken. De componenten sluiten naadloos aan op de bestaande architectuur van IRC Engineering, wat de onderhoudbaarheid ten goede komt.
+
+\section{Toekomstperspectieven}
+Hoewel het huidige prototype functioneel is, zijn er nog mogelijkheden tot uitbreiding om de module nog krachtiger te maken:
+
+\begin{enumerate}
+    \item \textbf{Itsme-integratie:} De huidige opzet is generiek gebouwd. Een logische vervolgstap is het toevoegen van Itsme als alternatieve verificatiemethode naast SMS, voor een nog hogere betrouwbaarheidsgraad.
+    \item \textbf{Meerdere ondertekenaars:} Momenteel ondersteunt de flow één ondertekenaar per document. In de toekomst kan dit uitgebreid worden zodat bijvoorbeeld zowel de klant als de leverancier hetzelfde document achtereenvolgens kunnen tekenen.
+    \item \textbf{E-mailnotificaties:} Het automatisch versturen van een bevestigingsmail met het getekende document als bijlage zou de gebruikservaring compleet maken.
+\end{enumerate}
+
+\section{Slotwoord}
+Dit project heeft aangetoond dat het mogelijk is om met moderne webtechnologieën een veilige en gebruiksvriendelijke ondertekenflow te integreren in een bestaand platform. De gerealiseerde module vormt een solide basis voor verdere digitalisering binnen Recytix en biedt directe meerwaarde voor de eindgebruikers.
