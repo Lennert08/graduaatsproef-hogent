@@ -1,1 +1,44 @@
 \chapter{Implementatie}
+\label{ch:implementatie}
+
+In dit hoofdstuk beschrijven we de technische realisatie van de applicatie. We splitsen dit op in de backend-implementatie (API en database) en de frontend-implementatie. Vanwege de vertrouwelijkheid van de broncode worden hier geen letterlijke codefragmenten getoond, maar focussen we op de architectuur, de datastructuren en de logische flows.
+
+\section{Backend Implementatie (.NET)}
+De backend fungeert als de centrale spil tussen de database, de frontend en de SMS-provider. De focus lag hier op veiligheid en robuustheid.
+
+\subsection{Datamodel}
+Om het ondertekenproces te faciliteren, is het datamodel uitgebreid met enkele nieuwe entiteiten. De belangrijkste entiteit is de \textbf{SignRequest}. Deze koppelt een specifiek document aan een gebruiker en houdt de status van het proces bij.
+
+Belangrijke eigenschappen die we hierbij opslaan zijn:
+\begin{itemize}
+    \item De unieke identificatie van het document en de gebruiker.
+    \item Het telefoonnummer waarnaar de verificatiecode is verzonden.
+    \item De gegenereerde verificatiecode (versleuteld opgeslagen).
+    \item De status van de handtekening (bijv. \textit{Pending}, \textit{Signed}, \textit{Expired}).
+    \item Tijdstempels voor audit-doeleinden (aanmaakdatum, tekenmoment).
+\end{itemize}
+
+\subsection{API Controllers}
+De communicatie verloopt via een RESTful API. De \texttt{SigningController} bevat de endpoints die nodig zijn voor de flow:
+\begin{enumerate}
+    \item \textbf{POST /request:} Start het proces. Deze methode genereert een cryptografisch veilige random code en slaat deze op in de database. Vervolgens wordt de SMS-service aangeroepen.
+    \item \textbf{POST /verify:} Verifieert de ingevoerde code. Hier wordt gecontroleerd of de code overeenkomt met de opgeslagen hash en of de code nog niet verlopen is. Bij succes wordt de status van het document geüpdatet.
+\end{enumerate}
+
+\section{Frontend Implementatie (React)}
+De frontend is ontwikkeld in React met TypeScript om type-veiligheid te garanderen. De implementatie richtte zich vooral op een gebruiksvriendelijke ervaring (UX).
+
+\subsection{User Interface Componenten}
+Er is een modale component ontwikkeld die over de document-viewer heen ligt. Deze component heeft verschillende statussen:
+\begin{itemize}
+    \item \textbf{Loading:} Terwijl de SMS verstuurd wordt.
+    \item \textbf{Input:} Waar de gebruiker de 6-cijferige code kan invoeren.
+    \item \textbf{Error:} Indien de code onjuist is of er een serverfout optreedt.
+    \item \textbf{Success:} Een bevestiging dat het document getekend is.
+\end{itemize}
+
+\subsection{Communicatie met de Backend}
+De frontend maakt gebruik van asynchrone HTTP-calls om met de backend te praten. Er is foutafhandeling ingebouwd om de gebruiker te informeren als de SMS niet verstuurd kan worden of als de sessie verlopen is.
+
+\section{Integratie in Recytix}
+De grootste uitdaging was de naadloze integratie in het bestaande Recytix-platform. Omdat Recytix al over een authenticatiesysteem beschikt, hebben we de module zo gebouwd dat deze de huidige gebruikerscontext (via JWT-tokens) hergebruikt. Hierdoor hoeft de gebruiker niet apart in te loggen om te tekenen; het systeem weet direct wie de ingelogde persoon is en welk telefoonnummer daarbij hoort.
