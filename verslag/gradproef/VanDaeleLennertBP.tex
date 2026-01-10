@@ -1,0 +1,58 @@
+\documentclass[dutch,dit,thesis]{hogentreport}
+
+\usepackage{lipsum}
+\usepackage[chapter,outputdir=../output]{minted}
+\usemintedstyle{solarized-light}
+
+\setminted{
+    autogobble,
+    frame=lines,
+    breaklines,
+    linenos,
+    tabsize=4
+}
+
+\renewcommand\listoflistingscaption{\IfLanguageName{dutch}{Lijst van codefragmenten}{List of listings}}
+\renewcommand\listingscaption{\IfLanguageName{dutch}{Codefragment}{Listing}}
+\renewcommand*\listoflistings{\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listoflistingscaption}\listof{listing}{\listoflistingscaption}}
+
+%%---------- JOUW GEGEVENS -------------------------------------------------
+\title{Ontwikkeling van een generieke digitale ondertekenmodule met SMS- en Itsme-integratie}
+\author{Lennert Van Daele}
+\promotor{Tommy Uytterhaegen}
+\copromotor{Kris De Ridder (IRC Engineering)}
+\instelling{IRC Engineering}
+\academicyear{2025-2026}
+\examperiod{1}
+\degreesought{Graduaat in het Programmeren}
+\partialthesis{false}
+
+\addbibresource{gradproef.bib}
+\renewcommand{\cleardoublepage}{\clearpage}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+
+\frontmatter
+\hypersetup{pageanchor=false}
+\maketitle
+\hypersetup{pageanchor=true}
+
+\input{voorwoord}
+\input{samenvatting}
+
+\tableofcontents
+\listoffigures
+
+\mainmatter
+\input{inleiding}
+\input{analyse}
+\input{technologie}
+\input{implementatie}
+\input{conclusie}
+
+\backmatter
+\setlength\bibitemsep{2pt}
+\printbibliography[heading=bibintoc]
+
+\end{document}
