@@ -2,6 +2,12 @@
 
 \usepackage{lipsum}
 \usepackage[chapter,outputdir=../output]{minted}
+\usepackage{graphicx} % Nodig voor afbeeldingen
+\usepackage{xcolor}   % Nodig voor de rode kleur
+
+% Definieer de exacte kleur rood uit je voorbeeld
+\definecolor{hogentRed}{RGB}{200, 20, 40}
+
 \usemintedstyle{solarized-light}
 
 \setminted{
@@ -25,20 +31,6 @@
 \makeatother
 % -------------------------------------------------
 
-%%---------- JOUW GEGEVENS -------------------------------------------------
-\title{Ontwikkeling van een generieke digitale ondertekenmodule met SMS- en Itsme-integratie}
-\author{Lennert Van Daele}
-\supervisor{Tommy Uytterhaegen}
-\cosupervisor{Kris De Ridder (IRC Engineering)}
-\academicyear{2025-2026}
-\examperiod{1}
-\degreesought{Graduaat in het Programmeren}
-\partialthesis{false}
-
-% --- DEZE REGEL HEB IK VERWIJDERD OMDAT HIJ DE BUILD DEED CRASHEN ---
-% \projectimage{img/recytix_logo.png} 
-% --------------------------------------------------------------------
-
 \addbibresource{gradproef.bib}
 \renewcommand{\cleardoublepage}{\clearpage}
 \renewcommand{\arraystretch}{1.2}
@@ -46,11 +38,59 @@
 \begin{document}
 
 \frontmatter
-\pagenumbering{arabic}
 \hypersetup{pageanchor=false}
-\maketitle
-\hypersetup{pageanchor=true}
 
+% --- BEGIN CUSTOM TITELPAGINA (ZOALS JOUW VOORBEELD) ---
+\begin{titlepage}
+    \sffamily % Zorgt voor een strakker lettertype (zonder schreefjes)
+    
+    % Links boven: HoGent
+    \noindent
+    {\small \textbf{HOGENT}} 
+    
+    \vspace{3cm} % Wat ruimte naar beneden
+    
+    % De Titel: Groot, Rood en Hoofdletters
+    \noindent
+    {\fontsize{30}{36}\selectfont \bfseries \color{hogentRed} ONTWIKKELING VAN EEN GENERIEKE DIGITALE ONDERTEKENMODULE MET SMS- EN ITSME-INTEGRATIE \par}
+    
+    \vspace{0.5cm}
+    
+    % Subtitel: Graduaatsproef (Rood)
+    \noindent
+    {\Large \color{hogentRed} Graduaatsproef \par}
+    
+    \vspace{2cm}
+    
+    % Jouw gegevens (Gewoon zwart)
+    \noindent
+    {\Large \textbf{Lennert Van Daele}}
+    
+    \vspace{1cm}
+    
+    \noindent
+    Promotor: Tommy Uytterhaegen \\
+    Co-promotor: Kris De Ridder (IRC Engineering)
+    
+    \vfill % Duwt het logo naar de bodem
+    
+    % Het logo groot in het midden/onderaan
+    \begin{center}
+        \includegraphics[width=10cm]{img/recytix_logo.png}
+    \end{center}
+    
+    \vspace{2cm}
+    
+    % Academiejaar rechtsonder (klein)
+    \hfill 2025-2026
+    
+\end{titlepage}
+% --- EINDE CUSTOM TITELPAGINA ---
+
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic} % Start nummering
+
+% De rest van je document
 \input{samenvatting}
 \input{abstract}
 \input{voorwoord}
