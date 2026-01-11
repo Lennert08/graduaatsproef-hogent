@@ -2,10 +2,10 @@
 
 \usepackage{lipsum}
 \usepackage[chapter,outputdir=../output]{minted}
-\usepackage{graphicx} % Nodig voor afbeeldingen
-\usepackage{xcolor}   % Nodig voor de rode kleur
+\usepackage{graphicx}
+\usepackage{xcolor}
 
-% Definieer de exacte kleur rood uit je voorbeeld
+% Definieer de HOGENT kleur
 \definecolor{hogentRed}{RGB}{200, 20, 40}
 
 \usemintedstyle{solarized-light}
@@ -22,14 +22,14 @@
 \renewcommand\listingscaption{\IfLanguageName{dutch}{Codefragment}{Listing}}
 \renewcommand*\listoflistings{\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listoflistingscaption}\listof{listing}{\listoflistingscaption}}
 
-% --- HACK OM PAGINANUMMERS DOOR TE LATEN LOPEN ---
+% --- HACK VOOR PAGINANUMMERS ---
 \makeatletter
 \renewcommand\mainmatter{
     \cleardoublepage
     \@mainmattertrue
 }
 \makeatother
-% -------------------------------------------------
+% -------------------------------
 
 \addbibresource{gradproef.bib}
 \renewcommand{\cleardoublepage}{\clearpage}
@@ -40,57 +40,59 @@
 \frontmatter
 \hypersetup{pageanchor=false}
 
-% --- BEGIN CUSTOM TITELPAGINA (ZOALS JOUW VOORBEELD) ---
+% --- START NIEUWE LAYOUT ---
 \begin{titlepage}
-    \sffamily % Zorgt voor een strakker lettertype (zonder schreefjes)
+    \sffamily % Strak lettertype
+    \raggedright % BELANGRIJK: Alles links uitlijnen (voorkomt rare spaties in titel)
     
-    % Links boven: HoGent
-    \noindent
+    % 1. LINKSBOVEN
     {\small \textbf{HOGENT}} 
     
-    \vspace{3cm} % Wat ruimte naar beneden
+    \vspace{3cm} 
     
-    % De Titel: Groot, Rood en Hoofdletters
-    \noindent
-    {\fontsize{30}{36}\selectfont \bfseries \color{hogentRed} ONTWIKKELING VAN EEN GENERIEKE DIGITALE ONDERTEKENMODULE MET SMS- EN ITSME-INTEGRATIE \par}
+    % 2. DE TITEL (Groot, Rood, Links uitgelijnd)
+    {
+        \fontsize{30}{36}\selectfont 
+        \bfseries 
+        \color{hogentRed} 
+        ONTWIKKELING VAN EEN GENERIEKE DIGITALE ONDERTEKENMODULE MET SMS- EN ITSME-INTEGRATIE
+        \par
+    }
     
     \vspace{0.5cm}
     
-    % Subtitel: Graduaatsproef (Rood)
-    \noindent
+    % 3. SUBTITEL
     {\Large \color{hogentRed} Graduaatsproef \par}
     
     \vspace{2cm}
     
-    % Jouw gegevens (Gewoon zwart)
-    \noindent
-    {\Large \textbf{Lennert Van Daele}}
+    % 4. HET LOGO (Nu in het midden geplaatst)
+    % Je kan de 'width' aanpassen als het te groot/klein is
+    \includegraphics[width=9cm]{img/recytix_logo.png}
     
-    \vspace{1cm}
+    \vfill % <--- DIT IS DE TRUC: Duwt alles hieronder naar de bodem
     
-    \noindent
+    % 5. ONDERAAN: JOUW NAAM EN PROMOTOREN
+    {\Large \textbf{Lennert Van Daele} \par}
+    
+    \vspace{0.5cm}
+    
+    % Info blokje
     Promotor: Tommy Uytterhaegen \\
     Co-promotor: Kris De Ridder (IRC Engineering)
     
-    \vfill % Duwt het logo naar de bodem
+    \vspace{1cm}
     
-    % Het logo groot in het midden/onderaan
-    \begin{center}
-        \includegraphics[width=10cm]{img/recytix_logo.png}
-    \end{center}
-    
-    \vspace{2cm}
-    
-    % Academiejaar rechtsonder (klein)
+    % Jaartal rechtsonder
     \hfill 2025-2026
     
 \end{titlepage}
-% --- EINDE CUSTOM TITELPAGINA ---
+% --- EINDE LAYOUT ---
 
 \hypersetup{pageanchor=true}
-\pagenumbering{arabic} % Start nummering
+\pagenumbering{arabic}
 
-% De rest van je document
+% De rest van het document...
 \input{samenvatting}
 \input{abstract}
 \input{voorwoord}
