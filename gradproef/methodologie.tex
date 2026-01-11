@@ -1,30 +1,26 @@
-%%=============================================================================
-%% Methodologie
-%%=============================================================================
-
-\chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}%
+\chapter{Methodologie}
 \label{ch:methodologie}
 
-%% TODO: In dit hoofstuk geef je een korte toelichting over hoe je te werk bent
-%% gegaan. Verdeel je onderzoek in grote fasen, en licht in elke fase toe wat
-%% de doelstelling was, welke deliverables daar uit gekomen zijn, en welke
-%% onderzoeksmethoden je daarbij toegepast hebt. Verantwoord waarom je
-%% op deze manier te werk gegaan bent.
-%% 
-%% Voorbeelden van zulke fasen zijn: literatuurstudie, opstellen van een
-%% requirements-analyse, opstellen long-list (bij vergelijkende studie),
-%% selectie van geschikte tools (bij vergelijkende studie, "short-list"),
-%% opzetten testopstelling/PoC, uitvoeren testen en verzamelen
-%% van resultaten, analyse van resultaten, ...
-%%
-%% !!!!! LET OP !!!!!
-%%
-%% Het is uitdrukkelijk NIET de bedoeling dat je het grootste deel van de corpus
-%% van je graduaatsproef in dit hoofstuk verwerkt! Dit hoofdstuk is eerder een
-%% kort overzicht van je plan van aanpak.
-%%
-%% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
-%% en geef het een gepaste titel.
+Voor de ontwikkeling van de applicatie is een gestructureerde aanpak gehanteerd die aansluit bij de werkwijze van IRC Engineering.
 
-\lipsum[21-25]
+\section{Ontwikkelmethode}
+Er is gekozen voor een hybride vorm van de **Waterval-methode** en **Agile**:
+\begin{itemize}
+    \item \textbf{Fase 1 (Analyse & Design):} De vereisten en het database-ontwerp zijn vooraf vastgelegd om een solide basis te hebben.
+    \item \textbf{Fase 2 (Iteratieve Ontwikkeling):} De eigenlijke bouw gebeurde in korte sprints. Eerst is de backend-API opgezet, gevolgd door de frontend-schermen en uiteindelijk de integratie van externe services zoals smstools en Itsme.
+    \item \textbf{Fase 3 (Testing & Deployment):} Elke functionaliteit is getest op de testomgeving van Recytix voordat deze als 'afgewerkt' werd beschouwd.
+\end{itemize}
 
+\section{Projectbeheer (Jira)}
+Binnen IRC Engineering wordt standaard gebruikgemaakt van **Jira** voor taakverdeling en issue tracking. Hoewel deze graduaatsproef een individueel project betrof en de noodzaak voor complexe team-coördinatie minder groot was, is de methodiek van het aanmaken en opvolgen van taken (tickets) wel gevolgd. Dit zorgde voor structuur en hielp om de voortgang van de verschillende onderdelen (Frontend, Backend, Integratie) gestructureerd te bewaken.
+
+\section{Gebruik van Generatieve AI}
+Tijdens het ontwikkelproces is er bewust gebruikgemaakt van AI-assistenten, specifiek **Claude (Anthropic)** en **Google Gemini**. Deze tools fungeerden als 'digitale sparringpartner' en werden ingezet voor:
+
+\begin{itemize}
+    \item \textbf{Debugging:} Het analyseren van complexe foutmeldingen en stack traces in React en .NET.
+    \item \textbf{Code-optimalisatie:} Het voorstellen van efficiëntere code-patronen (bijvoorbeeld het verbeteren van React Hooks).
+    \item \textbf{Tekstverwerking:} Het controleren van spelling en het verfijnen van formuleringen in dit verslag en de Engelse samenvatting.
+\end{itemize}
+
+De gegenereerde output is steeds kritisch geëvalueerd, getest en waar nodig aangepast voordat deze in het project werd geïntegreerd.

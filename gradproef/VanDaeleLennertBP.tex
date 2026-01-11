@@ -84,16 +84,19 @@
 \hypersetup{pageanchor=true}
 \pagenumbering{arabic}
 
-% De rest van het document...
 \input{samenvatting}
 \input{abstract}
 \input{voorwoord}
 
 \tableofcontents
-% \listoffigures 
 
 \mainmatter
 \input{inleiding}
+
+% --- HIER MOET HIJ ERBIJ ---
+\input{methodologie}
+% ---------------------------
+
 \input{analyse}
 \input{technologie}
 \input{implementatie}
@@ -101,11 +104,7 @@
 
 \backmatter
 \setlength\bibitemsep{2pt}
-
-% --- ZORG DAT ALLE BRONNEN ZICHTBAAR ZIJN ---
 \nocite{*}
-% --------------------------------------------
-
 \printbibliography[heading=bibintoc]
 
 \end{document}
