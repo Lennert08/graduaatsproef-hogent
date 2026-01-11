@@ -1,38 +1,32 @@
-# Graduaatsproef: Digitale Ondertekenmodule voor Recytix
+# Graduaatsproef: Digitale Handtekeningmodule (Recytix)
 
-**Student:** Lennert (Vul je achternaam in)
-**Opleiding:** Graduaat Programmeren (HoGent)
-**Stagebedrijf:** IRC Engineering
-**Promotor:** Tommy Uytterhaegen
-**Mentor:** Kris De Ridder
+**Student:** Lennert Van Daele  
+**Opleiding:** Graduaat Programmeren (HOGENT)  
+**Jaar:** 2025-2026  
+**Promotor:** Tommy Uytterhaegen  
+**Bedrijf:** IRC Engineering
 
----
+## 📄 Over dit project
 
-## ?? Projectomschrijving
+Deze repository bevat de **broncode van het verslag (LaTeX)** voor mijn graduaatsproef.
 
-Voor mijn eindstage bij **IRC Engineering** in Dendermonde heb ik een generieke module ontwikkeld om contracten digitaal en rechtsgeldig te laten ondertekenen binnen de applicatie **Recytix** (afvalbeheer). De module is zo opgezet dat deze later ook in andere softwarepakketten (zoals Energytix) ge�ntegreerd kan worden.
+Het project betreft de ontwikkeling van een generieke digitale ondertekenmodule met SMS-verificatie en audit trails, geïntegreerd in het Recytix-cloudplatform.
 
-### Belangrijkste functionaliteiten
-* **SMS Verificatie:** Integratie met SMSTools voor laagdrempelige verificatie.
-* **Itsme Integratie:** Uitbreiding met Itsme-authenticatie voor zekerheid via Rijksregisternummer.
-* **Audit Trails & Security:** GDPR-conforme opslag van logs (IP, timestamp, hashes van persoonsgegevens).
-* **Database Logic:** Performante business logica via PostgreSQL functies.
+## 🔒 Vertrouwelijkheid van de code
 
-## ??? Technologie Stack
+De broncode van de applicatie zelf (React frontend & .NET backend) is **intellectueel eigendom van IRC Engineering** en bevat vertrouwelijke bedrijfsinformatie. Om deze reden kan de broncode niet openbaar worden gepubliceerd in deze repository.
 
-* **Frontend:** React (met gebruik van interne Plattixcore componenten)
-* **Backend:** ASP.NET Core
-* **Database:** PostgreSQL (PL/pgSQL functies)
-* **Tools:** JetBrains Rider, DBeaver, Confluence
-* **CI/CD:** Self-hosted GitLab
+In het verslag (hoofdstuk Implementatie) worden wel abstracte code-voorbeelden en architecturale keuzes besproken om de technische werking toe te lichten.
 
-## ?? Inhoud van deze Repository
+## 🛠️ Gebruikte Technologieën
 
-Deze repository dient als portfolio en bevat de documentatie van het afstudeerproject.
-*Opmerking: De broncode van de applicatie is eigendom van IRC Engineering en is niet publiek beschikbaar.*
+- **Frontend:** React, TypeScript
+- **Backend:** C# .NET 8, Entity Framework
+- **Database:** PostgreSQL
+- **Tools:** Docker, Git, LaTeX (voor dit verslag)
 
-* **/verslag**: De volledige scriptie (LaTeX bronbestanden en PDF).
-* **/poster**: De promotionele poster.
-* **/presentatie**: Slides van de eindverdediging.
-* **/assets**: Screenshots en demo's van de applicatie.
+## 📂 Structuur van deze repo
 
+- `/gradproef`: De LaTeX-bronbestanden van de scriptie.
+- `/voorstel`: Het onderzoeksvoorstel.
+- `/poster`: De source files voor de poster.

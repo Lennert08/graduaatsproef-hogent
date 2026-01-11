@@ -21,7 +21,6 @@
 \author{Lennert Van Daele}
 \supervisor{Tommy Uytterhaegen}
 \cosupervisor{Kris De Ridder (IRC Engineering)}
-%% \projectorganisation regel is hier WEG
 \academicyear{2025-2026}
 \examperiod{1}
 \degreesought{Graduaat in het Programmeren}
@@ -38,15 +37,22 @@
 \maketitle
 \hypersetup{pageanchor=true}
 
-\input{voorwoord}
+% --- VOLGORDE AANGEPAST AAN SCHOOLREGELS ---
+% 1. Eerst de Nederlandse samenvatting
 \input{samenvatting}
+
+% 2. Dan de Engelse abstract
+\input{abstract}
+
+% 3. Dan pas het voorwoord
+\input{voorwoord}
+% -------------------------------------------
 
 \tableofcontents
 \listoffigures
 
 \mainmatter
 \input{inleiding}
-% Hoofdstukken
 \input{analyse}
 \input{technologie}
 \input{implementatie}
