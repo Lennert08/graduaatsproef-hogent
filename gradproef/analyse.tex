@@ -8,29 +8,46 @@ De applicatie moet de volgende kernfunctionaliteiten bieden:
 
 \begin{itemize}
     \item \textbf{Documentweergave:} De gebruiker moet het te ondertekenen document (PDF-formaat) duidelijk kunnen inzien in de browser, zonder externe software te hoeven downloaden.
-    \item \textbf{SMS-Authenticatie (2FA):} Om de identiteit van de ondertekenaar te verifiëren, moet er een verificatiecode per SMS worden verstuurd. De gebruiker kan het document pas ondertekenen na het correct invoeren van deze code.
-    \item \textbf{Audit Trail:} Elke stap in het proces moet worden gelogd. Dit omvat: het openen van het document, het aanvragen van de SMS-code, en het succesvol invoeren van de code. Dit logboek dient als bewijs voor de juridische geldigheid.
+    \item \textbf{Authenticatie (SMS \& Itsme):} Om de identiteit van de ondertekenaar te verifiëren, moet er gebruikgemaakt worden van Two-Factor Authentication (2FA). Dit kan via een SMS-code of via de Itsme-app. De gebruiker kan het document pas ondertekenen na een succesvolle verificatie.
+    \item \textbf{Audit Trail:} Elke stap in het proces moet worden gelogd. Dit omvat: het openen van het document, de keuze van authenticatie, en de succesvolle verificatie. Dit logboek dient als bewijs voor de juridische geldigheid.
     \item \textbf{Statusbeheer:} Het systeem moet bijhouden of een document 'In behandeling', 'Getekend' of 'Geweigerd' is.
 \end{itemize}
 
 \section{Niet-functionele Vereisten}
-Naast de functies zijn er ook kwaliteitserisen:
+Naast de functies zijn er ook kwaliteitseisen:
 \begin{itemize}
-    \item \textbf{Veiligheid:} De communicatie tussen client en server moet versleuteld zijn. Persoonsgegevens (zoals telefoonnummers) moeten veilig worden verwerkt.
+    \item \textbf{Veiligheid:} De communicatie tussen client en server moet versleuteld zijn. Persoonsgegevens (zoals telefoonnummers) moeten veilig worden verwerkt en opgeslagen.
     \item \textbf{Integratie:} De module moet visueel en technisch naadloos integreren in de bestaande Recytix-omgeving (huisstijl, login-sessie).
     \item \textbf{Responsiviteit:} De interface moet werken op zowel desktop als mobiele apparaten, aangezien gebruikers vaak ondertekenen via hun smartphone.
 \end{itemize}
 
 \section{Gewenste Flow (User Journey)}
-Het proces voor de eindgebruiker ziet er als volgt uit:
+\label{sec:user_journey}
+
+Het proces voor de eindgebruiker is ontworpen als een intuïtieve multi-step flow, geïntegreerd in de bestaande Recytix-omgeving. De stappen zijn als volgt gedefinieerd:
 
 \begin{enumerate}
-    \item \textbf{Notificatie:} De gebruiker ontvangt een verzoek (bijvoorbeeld via e-mail of in het portaal) om een document te ondertekenen.
-    \item \textbf{Inzage:} De gebruiker opent de link en ziet het document in de Recytix-interface.
-    \item \textbf{Actie:} De gebruiker klikt op de knop "Ondertekenen".
-    \item \textbf{Verificatie:} Het systeem stuurt automatisch een 6-cijferige code naar het geregistreerde mobiele nummer van de gebruiker.
-    \item \textbf{Bevestiging:} De gebruiker voert de code in op het scherm.
-    \item \textbf{Afronding:} Bij een correcte code wordt het document gemarkeerd als 'Getekend'. De audit trail wordt weggeschreven en de gebruiker krijgt een succesmelding.
+    \item \textbf{Inloggen en Notificatie:} 
+    Zodra de gebruiker inlogt op het portaal, controleert het systeem of er openstaande documenten zijn. Indien dit het geval is, verschijnt er rechtsonder een \textit{toast}-melding (bijvoorbeeld: "U heeft nog 5 te ondertekenen contracten").
+    
+    \item \textbf{Navigatie naar Overzicht:} 
+    Door op de melding te klikken, wordt de gebruiker direct naar de contracten-grid geleid. In dit overzicht kan de gebruiker de status van alle documenten zien en de lijst sorteren of filteren op 'Nog te ondertekenen'.
+    
+    \item \textbf{Inzage:} 
+    De gebruiker selecteert een document en krijgt een voorvertoning (PDF) te zien binnen de interface.
+    
+    \item \textbf{Start Ondertekenproces:} 
+    Na het klikken op de knop "Ondertekenen", opent een \textit{multi-step wizard}. De gebruiker krijgt hier de keuze tussen twee authenticatiemethoden:
+    \begin{itemize}
+        \item \textbf{SMS-verificatie:} Er wordt een code naar het gekoppelde mobiele nummer gestuurd.
+        \item \textbf{Itsme:} Authenticatie verloopt via de Itsme-app (indien geconfigureerd).
+    \end{itemize}
+    
+    \item \textbf{Verificatie:} 
+    De gebruiker voert de ontvangen SMS-code in of bevestigt zijn identiteit via de Itsme-app.
+    
+    \item \textbf{Afronding:} 
+    Bij een succesvolle verificatie wordt het document in de database gemarkeerd als 'Getekend'. De audit trail wordt weggeschreven en de gebruiker krijgt een succesmelding te zien, waarna de status in de grid direct wordt bijgewerkt.
 \end{enumerate}
 
 \section{Datamodel}
