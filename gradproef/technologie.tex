@@ -1,10 +1,10 @@
 \chapter{Technologie}
 \label{ch:technologie}
 
-In dit hoofdstuk bespreken we de technologische keuzes die gemaakt zijn voor de ontwikkeling van de digitale ondertekenmodule. De keuze voor deze stack is grotendeels bepaald door de bestaande architectuur van het Recytix-platform, om een naadloze integratie te garanderen.
+In dit hoofdstuk lichten we de technologie-stack toe die gekozen is voor de realisatie van de applicatie. De keuzes zijn gebaseerd op de standaarden binnen IRC Engineering en de specifieke vereisten van dit project.
 
 \section{Frontend: React}
-Voor de gebruikersinterface maken we gebruik van React \cite{react}. React is een populaire JavaScript-bibliotheek voor het bouwen van user interfaces, ontwikkeld door Meta.
+Voor de gebruikersinterface maken we gebruik van \textbf{React}. React is een populaire JavaScript-bibliotheek voor het bouwen van user interfaces, ontwikkeld door Meta.
 
 De belangrijkste redenen om voor React te kiezen zijn:
 \begin{itemize}
@@ -14,19 +14,20 @@ De belangrijkste redenen om voor React te kiezen zijn:
 \end{itemize}
 
 \section{Backend: C\# en .NET}
-De logica van de applicatie en de API worden ontwikkeld in C\# met behulp van het .NET framework \cite{dotnet}. Dit is de standaard backend-technologie binnen IRC Engineering.
+De logica van de applicatie en de API worden ontwikkeld in \textbf{C\#} met behulp van het \textbf{.NET framework}. Dit is de standaard backend-technologie binnen IRC Engineering.
 
 De voordelen van .NET in deze context zijn:
 \begin{itemize}
     \item \textbf{Strong typing:} C\# is een sterk getypeerde taal, wat helpt om fouten vroegtijdig tijdens de ontwikkeling op te sporen.
     \item \textbf{Security:} .NET biedt ingebouwde functionaliteiten voor authenticatie en autorisatie, wat cruciaal is voor het veilig verwerken van handtekeningen.
-    \item \textbf{Performance:} De moderne versies van .NET zijn sterk geoptimaliseerd en bieden hoge prestaties voor web-API's.
-\end{itemize}
+    \item \textbf{Performance:} De moderne versies van .NET zijn sterk geoptimaliseerd en bieden hoge prestaties voor web-API’s.
+\end{itemize} 
+% HIER ZAT DE FOUT: De itemize moet afgesloten zijn VOOR de volgende sectie begint.
 
 \section{Database: PostgreSQL}
-Voor de opslag van gegevens, inclusief de document-metadata en de audit trail, gebruiken we PostgreSQL \cite{postgresql}.
+Voor de opslag van gegevens, inclusief de document-metadata en de audit trail, gebruiken we \textbf{PostgreSQL}.
 
 PostgreSQL staat bekend om zijn betrouwbaarheid en robuustheid. Voor dit project is vooral de ondersteuning voor complexe queries en transacties belangrijk, zodat we kunnen garanderen dat een handtekening altijd correct en onveranderlijk wordt opgeslagen in de audit trail.
 
 \section{Hosting en Omgeving: Recytix}
-De applicatie wordt gehost binnen het Recytix-ecosysteem \cite{recytix}. Recytix is een cloudplatform ontwikkeld door IRC Engineering, specifiek gericht op afvalbeheer en recyclageprocessen. De handtekeningmodule draait als een microservice of module binnen dit grotere geheel, waardoor het direct gebruik kan maken van bestaande gebruikersaccounts en rechtenstructuren.
+De applicatie wordt gehost binnen de bestaande cloud-infrastructuur van Recytix. Dit betekent dat we gebruikmaken van Docker-containers die worden georkestreerd in een Kubernetes-omgeving. Dit zorgt voor schaalbaarheid en vereenvoudigt het deployment-proces.
