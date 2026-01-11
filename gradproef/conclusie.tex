@@ -4,25 +4,31 @@
 In deze scriptie hebben we een digitale handtekeningmodule ontwikkeld en geïntegreerd in het Recytix-platform. Het doel was om het contractproces, dat voorheen tijdrovend en handmatig verliep, te digitaliseren en te beveiligen.
 
 \section{Evaluatie van de doelstellingen}
-In de inleiding formuleerden we de doelstelling om een werkend prototype te bouwen met SMS-verificatie en een juridische audit trail. 
+In de inleiding formuleerden we de initiële doelstelling om een werkend prototype te bouwen met SMS-verificatie en een juridische audit trail. 
 
-We kunnen concluderen dat deze doelstellingen behaald zijn:
+We kunnen concluderen dat deze doelstellingen niet alleen behaald, maar **ruimschoots overtroffen** zijn. Omdat de ontwikkeling van de SMS-flow voorspoedig verliep, is er binnen de stageperiode ook een volledige integratie met **Itsme** gerealiseerd.
+
+De behaalde resultaten zijn:
 \begin{itemize}
-    \item \textbf{Integratie:} De module draait succesvol binnen de Recytix-omgeving. Gebruikers kunnen documenten inzien zonder de applicatie te verlaten.
-    \item \textbf{Veiligheid:} De Two-Factor Authentication (2FA) via SMS werkt correct en zorgt voor de noodzakelijke identiteitsverificatie.
-    \item \textbf{Traceerbaarheid:} Elke actie wordt vastgelegd in de database (audit trail), waardoor er achteraf altijd bewijs is van wie wanneer getekend heeft.
+    \item \textbf{Meerdere Authenticatiemethoden:} De gebruiker heeft nu de keuze uit twee flows:
+    \begin{itemize}
+        \item \textbf{SMS:} Via een 6-cijferige code.
+        \item \textbf{Itsme:} Via de Itsme-identificatieflow (Login). Hierbij wordt het Rijksregisternummer opgehaald en gekoppeld aan de sessie als uniek bewijs van identiteit, waarna de gebruiker de ondertekening bevestigt.
+    \end{itemize}
+    \item \textbf{Integratie & Veiligheid:} De module draait succesvol binnen de Recytix-omgeving. Gevoelige data wordt veilig verwerkt en elke stap wordt onveranderlijk vastgelegd in de audit trail.
+    \item \textbf{Overdraagbaarheid & Documentatie:} Om de continuïteit te waarborgen, is er uitgebreide technische documentatie opgeleverd in \textbf{Confluence}. Hierin staat beschreven hoe het component gebruikt moet worden en hoe toekomstige ontwikkelaars nieuwe providers (zoals WhatsApp) kunnen toevoegen, met een uitgewerkt code-voorbeeld.
 \end{itemize}
 
-De keuze voor de technologie-stack (React, .NET en PostgreSQL) is succesvol gebleken. De componenten sluiten naadloos aan op de bestaande architectuur van IRC Engineering, wat de onderhoudbaarheid ten goede komt.
+De keuze voor de technologie-stack (React, .NET en PostgreSQL) is succesvol gebleken. De componenten sluiten naadloos aan op de bestaande architectuur van IRC Engineering.
 
 \section{Toekomstperspectieven}
-Hoewel het huidige prototype functioneel is, zijn er nog mogelijkheden tot uitbreiding om de module nog krachtiger te maken:
+Hoewel het prototype nu al uitgebreider is dan gepland, zijn er nog logische vervolgstappen om de module verder te professionaliseren:
 
 \begin{enumerate}
-    \item \textbf{Itsme-integratie:} De huidige opzet is generiek gebouwd. Een logische vervolgstap is het toevoegen van Itsme als alternatieve verificatiemethode naast SMS, voor een nog hogere betrouwbaarheidsgraad.
     \item \textbf{Meerdere ondertekenaars:} Momenteel ondersteunt de flow één ondertekenaar per document. In de toekomst kan dit uitgebreid worden zodat bijvoorbeeld zowel de klant als de leverancier hetzelfde document achtereenvolgens kunnen tekenen.
-    \item \textbf{E-mailnotificaties:} Het automatisch versturen van een bevestigingsmail met het getekende document als bijlage zou de gebruikservaring compleet maken.
+    \item \textbf{E-mailnotificaties:} Het automatisch versturen van een bevestigingsmail naar de ondertekenaar met het getekende document als bijlage zou de gebruikservaring compleet maken.
+    \item \textbf{Uitbreiding providers:} Dankzij de generieke opzet en de handleiding in Confluence kan er eenvoudig ondersteuning worden toegevoegd voor andere kanalen, zoals WhatsApp for Business of buitenlandse ID-providers.
 \end{enumerate}
 
 \section{Slotwoord}
-Dit project heeft aangetoond dat het mogelijk is om met moderne webtechnologieën een veilige en gebruiksvriendelijke ondertekenflow te integreren in een bestaand platform. De gerealiseerde module vormt een solide basis voor verdere digitalisering binnen Recytix en biedt directe meerwaarde voor de eindgebruikers.
+Dit project heeft aangetoond dat het mogelijk is om met moderne webtechnologieën een veilige en gebruiksvriendelijke ondertekenflow te integreren in een bestaand platform. Wat begon als een opdracht voor SMS-verificatie, is uitgegroeid tot een volwaardige module met Itsme-ondersteuning. De gerealiseerde oplossing vormt een solide basis voor verdere digitalisering binnen Recytix en biedt directe meerwaarde voor de eindgebruikers.
