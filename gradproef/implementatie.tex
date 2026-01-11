@@ -1,44 +1,45 @@
 \chapter{Implementatie}
 \label{ch:implementatie}
 
-In dit hoofdstuk beschrijven we de technische realisatie van de applicatie. We splitsen dit op in de backend-implementatie (API en database) en de frontend-implementatie. Vanwege de vertrouwelijkheid van de broncode worden hier geen letterlijke codefragmenten getoond, maar focussen we op de architectuur, de datastructuren en de logische flows.
+In dit hoofdstuk bespreken we de effectieve realisatie van de applicatie. We splitsen dit op in de backend-logica (.NET), de frontend-integratie (React) en de specifieke beveiligingskeuzes die zijn gemaakt.
 
-\section{Backend Implementatie (.NET)}
-De backend fungeert als de centrale spil tussen de database, de frontend en de SMS-provider. De focus lag hier op veiligheid en robuustheid.
+\section{Backend Architectuur (.NET)}
+De backend fungeert als de motor van de applicatie en beheert de communicatie met de database en externe services.
 
-\subsection{Datamodel}
-Om het ondertekenproces te faciliteren, is het datamodel uitgebreid met enkele nieuwe entiteiten. De belangrijkste entiteit is de \textbf{SignRequest}. Deze koppelt een specifiek document aan een gebruiker en houdt de status van het proces bij.
+\subsection{Datamodel en Sessiebeheer}
+De kern van de module draait om de \textbf{SessionId}. Dit is de unieke identifier (Primary Key) die wordt aangemaakt zodra een gebruiker het ondertekenproces start. 
 
-Belangrijke eigenschappen die we hierbij opslaan zijn:
-\begin{itemize}
-    \item De unieke identificatie van het document en de gebruiker.
-    \item Het telefoonnummer waarnaar de verificatiecode is verzonden.
-    \item De gegenereerde verificatiecode (versleuteld opgeslagen).
-    \item De status van de handtekening (bijv. \textit{Pending}, \textit{Signed}, \textit{Expired}).
-    \item Tijdstempels voor audit-doeleinden (aanmaakdatum, tekenmoment).
-\end{itemize}
+In tegenstelling tot complexe state-machines, is er bewust gekozen voor een binaire statusbenadering voor de documenten: een document is ofwel \textbf{Niet Ondertekend}, ofwel \textbf{Ondertekend}. Er is geen tussenliggende 'Pending' status in de database; de voortgang van de gebruiker wordt puur bijgehouden via de sessie en de audit trail.
 
-\subsection{API Controllers}
-De communicatie verloopt via een RESTful API. De \texttt{SigningController} bevat de endpoints die nodig zijn voor de flow:
+\subsection{SMS Integratie (smstools)}
+Voor het versturen van de verificatiecodes maken we geen gebruik van een eigen mailserver of GSM-gateway, maar integreren we met de externe API van \textbf{smstools}.
+
+Wanneer de gebruiker kiest voor SMS-verificatie:
 \begin{enumerate}
-    \item \textbf{POST /request:} Start het proces. Deze methode genereert een cryptografisch veilige random code en slaat deze op in de database. Vervolgens wordt de SMS-service aangeroepen.
-    \item \textbf{POST /verify:} Verifieert de ingevoerde code. Hier wordt gecontroleerd of de code overeenkomt met de opgeslagen hash en of de code nog niet verlopen is. Bij succes wordt de status van het document geüpdatet.
+    \item De backend genereert een willekeurige 6-cijferige code.
+    \item Deze code wordt gehasht opgeslagen in de database (zie sectie \ref{sec:security}).
+    \item Er wordt een HTTP POST-request gestuurd naar de API van smstools met het mobiele nummer van de gebruiker en de code.
+    \item Smstools zorgt voor de daadwerkelijke aflevering van het bericht.
 \end{enumerate}
 
 \section{Frontend Implementatie (React)}
-De frontend is ontwikkeld in React met TypeScript om type-veiligheid te garanderen. De implementatie richtte zich vooral op een gebruiksvriendelijke ervaring (UX).
+De frontend is gebouwd als een herbruikbare component die naadloos in de Recytix-portal laadt.
 
-\subsection{User Interface Componenten}
-Er is een modale component ontwikkeld die over de document-viewer heen ligt. Deze component heeft verschillende statussen:
+\subsection{State Management}
+Om te weten waar de gebruiker zich bevindt in het proces (bijv. "Code ingevuld" of "Nog aan het lezen"), wordt de unieke \textbf{SessionId} opgeslagen in de \textbf{sessionStorage} van de browser.
+
+Er is specifiek gekozen voor `sessionStorage` in plaats van `localStorage` of cookies, omdat de sessie hierdoor automatisch wordt gewist zodra de gebruiker het tabblad of de browser sluit. Dit verhoogt de veiligheid: een volgende gebruiker op dezelfde PC kan niet per ongeluk verdergaan in een oude sessie. Er is in deze fase geen gebruikgemaakt van complexe JWT-implementaties, aangezien de sessie-ID voldoende context biedt binnen de beveiligde Recytix-omgeving.
+
+\subsection{Meertaligheid (i18n)}
+Aangezien Recytix klanten heeft in heel België en daarbuiten, is de volledige module **multi-language** opgezet. Alle teksten, knoppen en foutmeldingen zijn beschikbaar in het **Nederlands (NL)**, **Frans (FR)** en **Duits (DE)**. De taal wordt automatisch ingesteld op basis van de voorkeur van de ingelogde gebruiker.
+
+\section{Beveiliging: Hashing vs. Encryptie}
+\label{sec:security}
+Bij het opslaan van gevoelige data, zoals de verificatiecodes in de audit trail, is er bewust gekozen voor **hashing** in plaats van encryptie.
+
 \begin{itemize}
-    \item \textbf{Loading:} Terwijl de SMS verstuurd wordt.
-    \item \textbf{Input:} Waar de gebruiker de 6-cijferige code kan invoeren.
-    \item \textbf{Error:} Indien de code onjuist is of er een serverfout optreedt.
-    \item \textbf{Success:} Een bevestiging dat het document getekend is.
+    \item **Waarom Hashing?** Hashing is eenrichtingsverkeer. We moeten de code later kunnen verifiëren (door de invoer van de gebruiker te hashen en te vergelijken), maar we hoeven de originele code nooit meer terug te kunnen lezen uit de database.
+    \item **Voordeel:** Mocht de database ooit gecompromitteerd worden, dan zijn de verificatiecodes onleesbaar en niet terug te rekenen naar de originele waarden.
 \end{itemize}
 
-\subsection{Communicatie met de Backend}
-De frontend maakt gebruik van asynchrone HTTP-calls om met de backend te praten. Er is foutafhandeling ingebouwd om de gebruiker te informeren als de SMS niet verstuurd kan worden of als de sessie verlopen is.
-
-\section{Integratie in Recytix}
-De grootste uitdaging was de naadloze integratie in het bestaande Recytix-platform. Omdat Recytix al over een authenticatiesysteem beschikt, hebben we de module zo gebouwd dat deze de huidige gebruikerscontext (via JWT-tokens) hergebruikt. Hierdoor hoeft de gebruiker niet apart in te loggen om te tekenen; het systeem weet direct wie de ingelogde persoon is en welk telefoonnummer daarbij hoort.
+De audit trail fungeert hierdoor als een veilig logboek dat bewijst \textit{dat} de juiste code is ingevoerd, zonder de code zelf bloot te geven.
