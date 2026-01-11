@@ -29,5 +29,7 @@ Voor de opslag van gegevens, inclusief de document-metadata en de audit trail, g
 
 PostgreSQL staat bekend om zijn betrouwbaarheid en robuustheid. Voor dit project is vooral de ondersteuning voor complexe queries en transacties belangrijk, zodat we kunnen garanderen dat een handtekening altijd correct en onveranderlijk wordt opgeslagen in de audit trail.
 
-\section{Hosting en Omgeving: Recytix}
-De applicatie wordt gehost binnen de bestaande cloud-infrastructuur van Recytix. Dit betekent dat we gebruikmaken van Docker-containers die worden georkestreerd in een Kubernetes-omgeving. Dit zorgt voor schaalbaarheid en vereenvoudigt het deployment-proces.
+\section{Hosting en Ontwikkelomgeving}
+De applicatie wordt gehost binnen de infrastructuur van Recytix, die volledig draait op **Linux Debian** servers. De handtekeningmodule functioneert als een microservice binnen dit ecosysteem, waardoor het direct gebruik kan maken van de bestaande gebruikersaccounts en rechtenstructuren.
+
+Een specifieke technische uitdaging tijdens de ontwikkeling was de integratie met **Itsme**. De authenticatie-flow van Itsme vereist strikte veiligheidsprotocollen en functioneert niet op een lokale ontwikkelomgeving (`localhost`). Hierdoor was het niet mogelijk om de volledige flow lokaal te testen. Voor elke test-iteratie van de Itsme-integratie moest de applicatie effectief gedeployed worden naar een online testomgeving op de Linux-servers, wat zorgde voor een complexere ontwikkelcyclus.
