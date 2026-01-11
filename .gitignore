@@ -1,0 +1,10 @@
+# Negeer LaTeX build bestanden
+output/
+*.pdf
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
