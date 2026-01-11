@@ -16,15 +16,14 @@
 \renewcommand\listingscaption{\IfLanguageName{dutch}{Codefragment}{Listing}}
 \renewcommand*\listoflistings{\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listoflistingscaption}\listof{listing}{\listoflistingscaption}}
 
-% --- HACK OM PAGINANUMMERS DOOR TE LATEN LOPEN (ZOALS VOORBEELD) ---
+% --- HACK OM PAGINANUMMERS DOOR TE LATEN LOPEN ---
 \makeatletter
-% Zorg dat \mainmatter de pagina's NIET reset naar 1
 \renewcommand\mainmatter{
     \cleardoublepage
     \@mainmattertrue
 }
 \makeatother
-% -------------------------------------------------------------------
+% -------------------------------------------------
 
 %%---------- JOUW GEGEVENS -------------------------------------------------
 \title{Ontwikkeling van een generieke digitale ondertekenmodule met SMS- en Itsme-integratie}
@@ -36,8 +35,9 @@
 \degreesought{Graduaat in het Programmeren}
 \partialthesis{false}
 
-\projectimage{img/recytix_logo.png} 
-
+% --- DEZE REGEL HEB IK VERWIJDERD OMDAT HIJ DE BUILD DEED CRASHEN ---
+% \projectimage{img/recytix_logo.png} 
+% --------------------------------------------------------------------
 
 \addbibresource{gradproef.bib}
 \renewcommand{\cleardoublepage}{\clearpage}
@@ -46,21 +46,19 @@
 \begin{document}
 
 \frontmatter
-\pagenumbering{arabic} % <--- FORCEER HIER AL CIJFERS (1, 2, 3...)
+\pagenumbering{arabic}
 \hypersetup{pageanchor=false}
 \maketitle
 \hypersetup{pageanchor=true}
 
-% --- VOLGORDE AANGEPAST ---
 \input{samenvatting}
 \input{abstract}
 \input{voorwoord}
-% --------------------------
 
 \tableofcontents
 \listoffigures
 
-\mainmatter % Normaal reset dit naar 1, maar door de hack hierboven nu niet meer!
+\mainmatter
 \input{inleiding}
 \input{analyse}
 \input{technologie}
