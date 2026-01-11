@@ -1,17 +1,22 @@
 \chapter{Inleiding}
 \label{ch:inleiding}
 
-In dit inleidende hoofdstuk schetsen we de context van het project, definiëren we de probleemstelling en formuleren we de doelstellingen. Daarnaast bakenen we de scope van het project af en geven we een overzicht van de structuur van deze scriptie.
+De digitalisering van bedrijfsprocessen is de laatste jaren in een stroomversnelling geraakt. Bedrijven streven naar efficiëntie en willen af van tijdrovende papieren administratie. Binnen het cloudplatform Recytix, ontwikkeld door IRC Engineering, ontbrak echter nog een essentiële schakel: de mogelijkheid om documenten digitaal en rechtsgeldig te ondertekenen.
 
 \section{Probleemstelling}
-\label{sec:probleemstelling}
-Het platform Recytix heeft momenteel geen geïntegreerd systeem om documenten digitaal te laten ondertekenen. Voor cruciale documenten, zoals bijvoorbeeld verkoopovereenkomsten of mandaten, is een efficiënt en juridisch sluitend proces essentieel. Het ontbreken van deze functionaliteit zorgt voor administratieve vertragingen en een minder vlotte klantervaring.
+Recytix is een uitgebreid softwareplatform voor de afval- en recyclagesector. Gebruikers beheren hierin hun contracten, mandaten en orders. Tot op heden moesten deze documenten echter afgedrukt, handmatig ondertekend, gescand en teruggemaild worden.
 
-Dit project vult die nood in door een specifieke module te ontwikkelen die naadloos aansluit op het bestaande ecosysteem.
+Dit proces brengt verschillende nadelen met zich mee:
+\begin{itemize}
+    \item \textbf{Tijdsverlies:} Het manuele proces vertraagt de doorlooptijd van contracten aanzienlijk.
+    \item \textbf{Foutgevoeligheid:} Documenten raken kwijt of worden onleesbaar ingescand.
+    \item \textbf{Gebruikersonvriendelijkheid:} Klanten ervaren de administratieve rompslomp als een drempel.
+\end{itemize}
+
+Er is dus nood aan een geïntegreerde oplossing waarbij de gebruiker een document kan inzien en direct digitaal kan ondertekenen, zonder het platform te verlaten.
 
 \section{Doelstelling}
-\label{sec:doelstelling}
-Het hoofddoel van deze bachelorproef is het bouwen van een werkend prototype van een digitale handtekeningmodule binnen Recytix. 
+Het hoofddoel van deze graduaatsproef is het bouwen van een werkend prototype van een digitale handtekeningmodule binnen Recytix.
 
 Concreet zijn de subdoelen:
 \begin{itemize}
@@ -21,29 +26,19 @@ Concreet zijn de subdoelen:
 \end{itemize}
 
 \section{Onderzoeksvragen}
-\label{sec:onderzoeksvragen}
-Op basis van de probleemstelling en doelstelling formuleren we de volgende centrale onderzoeksvraag:
-\begin{quote}
-    \textit{Hoe kan een digitale handtekeningmodule met SMS-integratie en audit trail geïntegreerd worden in het Recytix-platform om het contractproces te digitaliseren?}
-\end{quote}
+Om dit doel te bereiken, staat de volgende centrale onderzoeksvraag centraal:
+
+\textit{"Hoe kan een veilige en juridisch geldige digitale handtekeningmodule geïntegreerd worden in het bestaande Recytix-platform met behulp van .NET en React?"}
+
+Deze wordt ondersteund door de volgende deelvragen:
+\begin{enumerate}
+    \item Welke technische vereisten zijn nodig om PDF-documenten veilig weer te geven in de browser?
+    \item Hoe kan SMS-verificatie technisch geïmplementeerd worden als geldig authenticatiemiddel?
+    \item Op welke manier moet de audit trail worden opgeslagen om bewijskracht te garanderen?
+\end{enumerate}
 
 \section{Methodologie}
-\label{sec:methodologie}
-Voor de ontwikkeling van deze applicatie wordt gebruikgemaakt van de volgende technologieën:
-\begin{itemize}
-    \item \textbf{Frontend:} React voor de gebruikersinterface.
-    \item \textbf{Backend:} C\# (.NET) voor de API en logica.
-    \item \textbf{Database:} PostgreSQL voor dataopslag en de audit trail.
-\end{itemize}
-
-De ontwikkeling verloopt iteratief, waarbij eerst de analyse en architectuur worden opgezet, gevolgd door de implementatie van de backend en vervolgens de frontend.
+Voor de ontwikkeling wordt gebruikgemaakt van de watervalmethode, aangepast aan de agile werkwijze van IRC Engineering. We starten met een analyse van de vereisten, gevolgd door het ontwerp van de architectuur en de database. Vervolgens wordt de applicatie iteratief ontwikkeld, waarbij eerst de backend-functionaliteit wordt opgezet en daarna de frontend-interface. Tot slot wordt de module uitgebreid getest.
 
 \section{Opzet van de thesis}
-\label{sec:opzet}
-De rest van deze scriptie is als volgt opgebouwd:
-\begin{itemize}
-    \item \textbf{Hoofdstuk \ref{ch:analyse} (Analyse)} bespreekt de vereisten en het functionele ontwerp.
-    \item \textbf{Hoofdstuk \ref{ch:technologie} (Technologie)} gaat dieper in op de gekozen tools en frameworks.
-    \item \textbf{Hoofdstuk \ref{ch:implementatie} (Implementatie)} beschrijft de technische uitwerking en de code.
-    \item \textbf{Hoofdstuk \ref{ch:conclusie} (Conclusie)} vat de resultaten samen en blikt vooruit naar mogelijke uitbreidingen.
-\end{itemize}
+In hoofdstuk \ref{ch:analyse} bespreken we de functionele en technische analyse. Hoofdstuk \ref{ch:technologie} licht de gekozen technologie-stack toe. De effectieve realisatie komt aan bod in hoofdstuk \ref{ch:implementatie} (Implementatie). We sluiten af met een conclusie en toekomstperspectieven in hoofdstuk \ref{ch:conclusie}.

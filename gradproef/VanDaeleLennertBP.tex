@@ -40,17 +40,15 @@
 \frontmatter
 \hypersetup{pageanchor=false}
 
-% --- START NIEUWE LAYOUT ---
+% --- START CUSTOM TITELPAGINA ---
 \begin{titlepage}
-    \sffamily % Strak lettertype
-    \raggedright % BELANGRIJK: Alles links uitlijnen (voorkomt rare spaties in titel)
+    \sffamily 
+    \raggedright 
     
-    % 1. LINKSBOVEN
     {\small \textbf{HOGENT}} 
     
     \vspace{3cm} 
     
-    % 2. DE TITEL (Groot, Rood, Links uitgelijnd)
     {
         \fontsize{30}{36}\selectfont 
         \bfseries 
@@ -61,33 +59,27 @@
     
     \vspace{0.5cm}
     
-    % 3. SUBTITEL
     {\Large \color{hogentRed} Graduaatsproef \par}
     
     \vspace{2cm}
     
-    % 4. HET LOGO (Nu in het midden geplaatst)
-    % Je kan de 'width' aanpassen als het te groot/klein is
     \includegraphics[width=9cm]{img/recytix_logo.png}
     
-    \vfill % <--- DIT IS DE TRUC: Duwt alles hieronder naar de bodem
+    \vfill 
     
-    % 5. ONDERAAN: JOUW NAAM EN PROMOTOREN
     {\Large \textbf{Lennert Van Daele} \par}
     
     \vspace{0.5cm}
     
-    % Info blokje
     Promotor: Tommy Uytterhaegen \\
     Co-promotor: Kris De Ridder (IRC Engineering)
     
     \vspace{1cm}
     
-    % Jaartal rechtsonder
     \hfill 2025-2026
     
 \end{titlepage}
-% --- EINDE LAYOUT ---
+% --- EINDE TITELPAGINA ---
 
 \hypersetup{pageanchor=true}
 \pagenumbering{arabic}
@@ -98,7 +90,7 @@
 \input{voorwoord}
 
 \tableofcontents
-\listoffigures
+% \listoffigures 
 
 \mainmatter
 \input{inleiding}
