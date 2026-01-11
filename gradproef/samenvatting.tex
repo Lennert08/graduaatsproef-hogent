@@ -3,13 +3,13 @@
 
 Deze graduaatsproef beschrijft de ontwikkeling en integratie van een digitale handtekeningmodule binnen het cloudplatform Recytix. Voorheen ontbrak een geïntegreerde oplossing om documenten, zoals contracten en mandaten, digitaal te laten ondertekenen. Dit leidde tot inefficiënte processen en administratieve rompslomp.
 
-Het doel van dit project was het realiseren van een werkend prototype waarmee gebruikers documenten juridisch geldig kunnen ondertekenen zonder de applicatie te verlaten. De focus lag hierbij op gebruiksvriendelijkheid en veiligheid.
+Het doel van dit project was het realiseren van een werkend prototype waarmee gebruikers documenten juridisch geldig kunnen ondertekenen via SMS-verificatie. Tijdens het traject is dit doel overtroffen door ook authenticatie via **Itsme** volledig te integreren. De focus lag hierbij op gebruiksvriendelijkheid, veiligheid en schaalbaarheid.
 
-Voor de realisatie is gebruikgemaakt van een moderne technologie-stack die aansluit bij de standaarden van IRC Engineering. De frontend is ontwikkeld in \textbf{React} met TypeScript, wat zorgt voor een responsieve gebruikersinterface. De backend is gerealiseerd in \textbf{C\# (.NET)}, waarbij een RESTful API de communicatie verzorgt. Voor de dataopslag en de audit trail wordt gebruikgemaakt van een \textbf{PostgreSQL}-database.
+Voor de realisatie is gebruikgemaakt van een moderne technologie-stack: een frontend in \textbf{React} (TypeScript) en een backend in \textbf{C\# (.NET)}. De communicatie verloopt via een RESTful API en data wordt veilig opgeslagen in een \textbf{PostgreSQL}-database.
 
-De kernfunctionaliteit van de module omvat het inzien van PDF-documenten en het ondertekenen via een Two-Factor Authentication (2FA) mechanisme per SMS. Elke stap in het proces wordt nauwkeurig vastgelegd in een audit trail, wat essentieel is voor de bewijslast.
+De kernfunctionaliteit omvat het inzien van PDF-documenten en een keuze-flow tussen SMS- of Itsme-verificatie. Elke stap wordt nauwkeurig vastgelegd in een audit trail. Daarnaast is er uitgebreide technische documentatie opgeleverd in Confluence om toekomstige uitbreidingen (zoals WhatsApp-integratie) te faciliteren.
 
-Het resultaat is een functionele en veilige module die naadloos integreert met de bestaande gebruikersauthenticatie van Recytix. Hiermee wordt de doorlooptijd van administratieve processen aanzienlijk verkort en wordt een solide basis gelegd voor verdere uitbreidingen, zoals integratie met Itsme of ondersteuning voor meerdere ondertekenaars.
+Het resultaat is een functionele, veilige module die naadloos integreert met het Recytix-platform. Hiermee wordt de doorlooptijd van administratieve processen aanzienlijk verkort en is een solide basis gelegd voor verdere digitalisering.
 
 \vspace{1.5cm}
 \noindent \textbf{Link naar GitHub repository (Verslag):} \\
