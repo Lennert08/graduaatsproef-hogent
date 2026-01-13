@@ -68,6 +68,7 @@
     De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard met keuze voor verificatie.
 
     % SCREENSHOT WIZARD
+    % Let op: zorg dat sms.png bestaat in gradproef/img/
     \begin{center}
         \includegraphics[width=0.9\linewidth]{../gradproef/img/sms.png}
     \end{center}
@@ -84,9 +85,10 @@
     % --- KOLOM 3 ---
     \section{Technische Uitdagingen}
     
-    % ITSME LOGO als blikvanger
+    % ITSME LOGO (Staat even in commentaar tot het bestand gevonden wordt)
+    % Haal het %-teken weg als je zeker weet dat het bestand er is!
     \begin{center}
-        \includegraphics[width=0.4\linewidth]{../gradproef/img/itsme_logo.png}
+        % \includegraphics[width=0.4\linewidth]{../gradproef/img/itsme_logo.png}
     \end{center}
 
     Een specifiek struikelblok was de integratie met **Itsme**. 
@@ -103,7 +105,7 @@
         \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd.
         \item \textbf{Schaalbaar:} De module is generiek opgezet en meertalig (NL/FR/DE).
         \item \textbf{Klaar voor productie:} De oplossing draait succesvol binnen de Recytix-architectuur.
-    </itemize}
+    \end{itemize} % HIER WAS DE FOUT (\end{itemize} ipv </itemize>)
     
     \vspace{2cm}
     \centering
