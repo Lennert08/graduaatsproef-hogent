@@ -1,23 +1,23 @@
 \chapter{Methodologie}
 \label{ch:methodologie}
 
-Voor de ontwikkeling van de applicatie is een gestructureerde aanpak gehanteerd die aansluit bij de werkwijze van IRC Engineering.
+Voor de ontwikkeling van de applicatie is een aanpak gekozen die past binnen de werkwijze van IRC Engineering, maar rekening houdt met het individuele karakter van een graduaatsproef.
 
 \section{Ontwikkelmethode}
-Er is gekozen voor een hybride vorm van de **Waterval-methode** en **Agile**:
+Er is gekozen voor een **iteratieve aanpak** met een logische fase-opbouw:
 \begin{itemize}
-    % HIER ZAT DE FOUT: & vervangen door \&
-    \item \textbf{Fase 1 (Analyse \& Design):} De vereisten en het database-ontwerp zijn vooraf vastgelegd om een solide basis te hebben.
-    \item \textbf{Fase 2 (Iteratieve Ontwikkeling):} De eigenlijke bouw gebeurde in korte sprints. Eerst is de backend-API opgezet, gevolgd door de frontend-schermen en uiteindelijk de integratie van externe services zoals smstools en Itsme.
-    % HIER OOK
-    \item \textbf{Fase 3 (Testing \& Deployment):} Elke functionaliteit is getest op de testomgeving van Recytix voordat deze als 'afgewerkt' werd beschouwd.
+    \item \textbf{Fase 1 (Analyse \& Design):} Omdat er voor deze opdracht geen kant-en-klare tickets klaarlagen, zijn de functionele vereisten eerst vertaald naar een technisch ontwerp en een datamodel.
+    \item \textbf{Fase 2 (Realisatie):} De ontwikkeling gebeurde stapsgewijs. Eerst is de volledige backend-logica (API en database) opgezet om de werking te garanderen. Vervolgens is de frontend hierop gebouwd. Deze volgorde zorgde ervoor dat de interface direct functioneel getest kon worden tegen een werkende backend.
+    \item \textbf{Fase 3 (Testing \& Validatie):} Elke functionaliteit is na ontwikkeling direct gevalideerd op de testomgeving van Recytix.
 \end{itemize}
 
 \section{Projectbeheer (Jira)}
-Binnen IRC Engineering wordt standaard gebruikgemaakt van **Jira** voor taakverdeling en issue tracking. Hoewel deze graduaatsproef een individueel project betrof en de noodzaak voor complexe team-coördinatie minder groot was, is de methodiek van het aanmaken en opvolgen van taken (tickets) wel gevolgd. Dit zorgde voor structuur en hielp om de voortgang van de verschillende onderdelen (Frontend, Backend, Integratie) gestructureerd te bewaken.
+Binnen IRC Engineering wordt standaard gewerkt met **Jira** \cite{jira} voor het opvolgen van taken. In de dagelijkse werking hanteert het team een flexibele flow (Kanban-stijl) waarbij taken worden opgepakt naarmate ze binnenkomen, zonder strikte sprints.
+
+Voor deze specifieke opdracht waren er echter geen vooraf gedefinieerde tickets. Ik heb daarom zelf de verantwoordelijkheid genomen om de grote opdracht (``bouw een tekenmodule'') op te splitsen in behapbare technische taken. Hoewel het project individueel was, is de methodiek van issue tracking gevolgd om structuur te behouden en de voortgang van backend, frontend en integraties (zoals Itsme) te bewaken.
 
 \section{Gebruik van Generatieve AI}
-Tijdens het ontwikkelproces is er bewust gebruikgemaakt van AI-assistenten, specifiek **Claude (Anthropic)** en **Google Gemini**. Deze tools fungeerden als 'digitale sparringpartner' en werden ingezet voor:
+Tijdens het ontwikkelproces is er bewust gebruikgemaakt van AI-assistenten, specifiek **Claude (Anthropic)** en **Google Gemini** \cite{claude, gemini}. Deze tools fungeerden als `digitale sparringpartner' en werden ingezet voor:
 
 \begin{itemize}
     \item \textbf{Debugging:} Het analyseren van complexe foutmeldingen en stack traces in React en .NET.
