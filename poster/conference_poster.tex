@@ -10,7 +10,7 @@
 \title{Ontwikkeling van een Generieke Digitale Ondertekenmodule}
 \author{Lennert Van Daele}
 
-% De template gebruikt Engelse termen:
+% De template gebruikt Engelse termen voor de rollen:
 \supervisor{Tommy Uytterhaegen}
 \cosupervisor{Kris De Ridder (IRC Engineering)}
 
@@ -67,8 +67,9 @@
     \textbf{2. Inzage \& Keuze}
     De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard met keuze voor verificatie.
 
+    % SCREENSHOT WIZARD
     \begin{center}
-        \textit{(Screenshot: Keuzescherm SMS / Itsme)}
+        \includegraphics[width=0.9\linewidth]{../gradproef/img/sms.png}
     \end{center}
 
     \textbf{3. Verificatie (2FA)}
@@ -82,6 +83,12 @@
 
     % --- KOLOM 3 ---
     \section{Technische Uitdagingen}
+    
+    % ITSME LOGO als blikvanger
+    \begin{center}
+        \includegraphics[width=0.4\linewidth]{../gradproef/img/itsme_logo.png}
+    \end{center}
+
     Een specifiek struikelblok was de integratie met **Itsme**. 
     
     De authenticatie-flow van Itsme vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
@@ -96,11 +103,11 @@
         \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd.
         \item \textbf{Schaalbaar:} De module is generiek opgezet en meertalig (NL/FR/DE).
         \item \textbf{Klaar voor productie:} De oplossing draait succesvol binnen de Recytix-architectuur.
-    \end{itemize} % HIER ZAT DE FOUT (</itemize>)
+    </itemize}
     
     \vspace{2cm}
     \centering
-    % LOGO
+    % RECYTIX LOGO
     \includegraphics[width=0.7\linewidth]{../gradproef/img/recytix_logo.png}
 
 \end{multicols}
