@@ -1,86 +1,107 @@
-%==============================================================================
-% Sjabloon poster bachproef
-%==============================================================================
-% Gebaseerd op document class `a0poster' door Gerlinde Kettl en Matthias Weiser
-% Aangepast voor gebruik aan HOGENT door Jens Buysse en Bert Van Vreckem
+\documentclass{hogent-poster}
 
-\documentclass[a0,portrait]{hogent-poster}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage[dutch]{babel}
 
-% Info over de opleiding
-\course{Graduaatsproef}
-\studyprogramme{Graduaat in het Programmeren}
-\academicyear{2022-2023}
-\institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
-
-% Info over de bachelorproef
-\title{Titel van je graduaatsproef}
-\subtitle{Ondertitel (eventueel)}
-\author{Voornaam Naam}
-\email{voornaam.familienaam@student.hogent.be}
-\supervisor{Voornaam Naam}
-\cosupervisor{Voornaam Naam (Bedrijf)}
-
-% Indien ingevuld, wordt deze informatie toegevoegd aan het einde van de
-% abstract. Zet in commentaar als je dit niet wilt.
-\specialisation{Programmeren}
-\keywords{Lambda-calculus, Scheme}
-\projectrepo{https://github.com/user/repo}
+% --- GEGEVENS ---
+\title{Ontwikkeling van een Generieke Digitale Ondertekenmodule}
+\author{Lennert Van Daele}
+\promotor{Tommy Uytterhaegen}
+\copromotor{Kris De Ridder (IRC Engineering)}
+\projecttype{Graduaatsproef}
+\academicyear{2025-2026}
 
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
-\end{abstract}
+\begin{multicols}{3}
 
-\begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
+    % --- KOLOM 1 ---
+    \section{Situatieschets}
+    IRC Engineering ontwikkelt het cloudplatform **Recytix** voor de afvalsector. Klanten beheren hierin contracten en mandaten.
+    
+    \textbf{Het probleem:}
+    \begin{itemize}
+        \item Contracten werden afgedrukt, handmatig getekend en weer ingescanned.
+        \item Dit proces was tijdrovend, foutgevoelig en administratief zwaar.
+        \item Geen centrale opvolging van wie wat getekend heeft.
+    \end{itemize}
 
-\section{Introductie}
+    \section{Doelstelling}
+    Het realiseren van een **digitale handtekeningmodule** die naadloos integreert in Recytix.
+    
+    \textbf{Vereisten:}
+    \begin{enumerate}
+        \item \textbf{Rechtsgeldig:} Identificatie via 2FA (SMS of Itsme).
+        \item \textbf{Gebruiksvriendelijk:} Geen externe software nodig voor de klant.
+        \item \textbf{Traceerbaar:} Volledige Audit Trail (Logboek).
+    \end{enumerate}
 
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+    \section{Technologie-stack}
+    De module is gebouwd met de standaard technologieën van IRC Engineering:
+    
+    \begin{center}
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Frontend} & React (TypeScript) \\
+            \textbf{Backend} & C\# .NET Web API \\
+            \textbf{Database} & PostgreSQL \\
+            \textbf{Auth} & Smstools API \& Itsme \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say `Ni' again to you, if you do not appease us.
+    % --- KOLOM 2 ---
+    \section{De Oplossing: User Journey}
+    De eindgebruiker doorloopt een intuïtief stappenplan:
 
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
+    \textbf{1. Notificatie}
+    Bij het inloggen ziet de gebruiker direct een 'Toast'-melding: *"U heeft 5 openstaande contracten"*.
+    
+    \textbf{2. Inzage & Keuze}
+    De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard met keuze voor verificatie.
 
-You can't expect to wield supreme power just `cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+    % RUIMTE VOOR SCREENSHOT (LATER) OF LOGO
+    \begin{center}
+        \textit{(Screenshot: Keuzescherm SMS / Itsme)}
+    \end{center}
 
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+    \textbf{3. Verificatie (2FA)}
+    \begin{itemize}
+        \item \textbf{SMS-flow:} Gebruiker ontvangt een 6-cijferige code op zijn GSM en voert deze in.
+        \item \textbf{Itsme-flow:} Gebruiker bevestigt zijn identiteit via de Itsme-app (Rijksregisternummer check).
+    \end{itemize}
 
-\section{Experimenten}
+    \textbf{4. Afronding}
+    Het document krijgt de status \textbf{'Getekend'}. De audit trail wordt weggeschreven in de database.
 
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
+    % --- KOLOM 3 ---
+    \section{Technische Uitdagingen}
+    Een specifiek struikelblok was de integratie met **Itsme**. 
+    
+    De authenticatie-flow van Itsme vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
+    
+    \textbf{Oplossing:}
+    Tijdens de ontwikkeling moest voor elke test van de Itsme-flow de applicatie effectief **gedeployed** worden naar de online testomgeving op de Linux-servers van Recytix. Dit vroeg om een gedisciplineerde 'Build & Deploy' cyclus.
 
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
-
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
-
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
-\section{Sectie met figuur}
-
-De {\LaTeX} figure-omgeving bepaalt zelf waar een afbeelding komt en dat is meestal niet op de plek in de tekst waar de figure-omgeving gedefinieerd wordt. Als je wilt forceren dat afbeeldingen toch in de flow van de tekst blijven, dan kan je dat zoals hieronder:
-
-\begin{center}
-  \captionsetup{type=figure}
-  \includegraphics[width=1.0\linewidth]{grail}
-  \captionof{figure}{He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say `Ni' again to you, if you do not appease us}
-\end{center}
-
-Let er wel op dat dit tot problemen met bladschikking kan leiden.
-
-\section{Conclusies}
-
-Don't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
-
-\section{Toekomstig onderzoek}
-
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
+    \section{Conclusie}
+    De doelstellingen zijn niet alleen behaald, maar **overtroffen**.
+    
+    \begin{itemize}
+        \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd.
+        \item \textbf{Schaalbaar:} De module is generiek opgezet en meertalig (NL/FR/DE).
+        \item \textbf{Klaar voor productie:} De oplossing draait succesvol binnen de Recytix-architectuur.
+    \end{itemize}
+    
+    \vspace{2cm}
+    \centering
+    % HIER STAAT NU HET LOGO IPV DE QR CODE
+    \includegraphics[width=0.7\linewidth]{../gradproef/img/recytix_logo.png}
 
 \end{multicols}
+
 \end{document}
