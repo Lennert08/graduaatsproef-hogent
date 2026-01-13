@@ -6,12 +6,16 @@
 \usepackage{wrapfig}
 \usepackage[dutch]{babel}
 
-% --- GEGEVENS ---
+% --- GEGEVENS (Gebruik de juiste commando's) ---
 \title{Ontwikkeling van een Generieke Digitale Ondertekenmodule}
 \author{Lennert Van Daele}
-\promotor{Tommy Uytterhaegen}
-\copromotor{Kris De Ridder (IRC Engineering)}
-\projecttype{Graduaatsproef}
+
+% De template gebruikt Engelse termen:
+\supervisor{Tommy Uytterhaegen}  % Vervangt \promotor
+\cosupervisor{Kris De Ridder (IRC Engineering)} % Vervangt \copromotor
+
+% \projecttype bestaat waarschijnlijk niet in deze template, dus die laten we weg.
+% De opleiding/jaar zit vaak standaard in de class of is niet verplicht.
 \academicyear{2025-2026}
 
 \begin{document}
@@ -50,7 +54,7 @@
             \textbf{Frontend} & React (TypeScript) \\
             \textbf{Backend} & C\# .NET Web API \\
             \textbf{Database} & PostgreSQL \\
-            \textbf{Auth} & Smstools API \& Itsme \\
+            \textbf{Auth} & Smstools API \& Itsme \\ % HIER AANGEPAST: \&
             \bottomrule
         \end{tabular}
     \end{center}
@@ -62,7 +66,7 @@
     \textbf{1. Notificatie}
     Bij het inloggen ziet de gebruiker direct een 'Toast'-melding: *"U heeft 5 openstaande contracten"*.
     
-    \textbf{2. Inzage & Keuze}
+    \textbf{2. Inzage \& Keuze} % HIER AANGEPAST: \&
     De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard met keuze voor verificatie.
 
     % RUIMTE VOOR SCREENSHOT (LATER) OF LOGO
@@ -86,20 +90,20 @@
     De authenticatie-flow van Itsme vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
     
     \textbf{Oplossing:}
-    Tijdens de ontwikkeling moest voor elke test van de Itsme-flow de applicatie effectief **gedeployed** worden naar de online testomgeving op de Linux-servers van Recytix. Dit vroeg om een gedisciplineerde 'Build & Deploy' cyclus.
+    Tijdens de ontwikkeling moest voor elke test van de Itsme-flow de applicatie effectief **gedeployed** worden naar de online testomgeving op de Linux-servers van Recytix. Dit vroeg om een gedisciplineerde 'Build \& Deploy' cyclus. % HIER AANGEPAST: \&
 
     \section{Conclusie}
     De doelstellingen zijn niet alleen behaald, maar **overtroffen**.
     
     \begin{itemize}
-        \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd.
+        \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd. % HIER AANGEPAST: \&
         \item \textbf{Schaalbaar:} De module is generiek opgezet en meertalig (NL/FR/DE).
         \item \textbf{Klaar voor productie:} De oplossing draait succesvol binnen de Recytix-architectuur.
-    \end{itemize}
+    </itemize}
     
     \vspace{2cm}
     \centering
-    % HIER STAAT NU HET LOGO IPV DE QR CODE
+    % LOGO
     \includegraphics[width=0.7\linewidth]{../gradproef/img/recytix_logo.png}
 
 \end{multicols}
