@@ -1,20 +1,42 @@
 \documentclass{hogent-poster}
 
 \usepackage{graphicx}
-\usepackage{lipsum}
 \usepackage{booktabs}
 \usepackage{wrapfig}
 \usepackage[dutch]{babel}
+% Nieuwe pakketten voor de layout:
+\usepackage{tcolorbox} 
+\usepackage{pifont} % Voor mooie vinkjes
+\usepackage{amssymb} % Voor wiskundige symbolen
+
+% --- CONFIGURATIE VAN DE KLEURBLOKKEN ---
+% Een blauw blok voor technische info
+\newtcolorbox{techbox}[1]{
+    colback=hogent-grey!10, % Lichte achtergrond
+    colframe=hogent-blue,   % HOGENT blauwe rand
+    title=#1, 
+    fonttitle=\bfseries\Large,
+    boxrule=2pt,
+    arc=5pt
+}
+
+% Een oranje blok voor de conclusie (opvallend!)
+\newtcolorbox{conclusionbox}[1]{
+    colback=hogent-ochre!10, 
+    colframe=hogent-ochre,
+    title=#1, 
+    fonttitle=\bfseries\Large,
+    boxrule=2pt,
+    arc=5pt
+}
 
 % --- GEGEVENS ---
 \title{Ontwikkeling van een Generieke Digitale Ondertekenmodule}
 \author{Lennert Van Daele}
-
-% De template gebruikt Engelse termen voor de rollen:
 \supervisor{Tommy Uytterhaegen}
 \cosupervisor{Kris De Ridder (IRC Engineering)}
-
 \academicyear{2025-2026}
+\institution{Hogeschool Gent}
 
 \begin{document}
 
@@ -22,95 +44,110 @@
 
 \begin{multicols}{3}
 
-    % --- KOLOM 1 ---
+    % ================= KOLOM 1 =================
     \section{Situatieschets}
     IRC Engineering ontwikkelt het cloudplatform **Recytix** voor de afvalsector. Klanten beheren hierin contracten en mandaten.
     
-    \textbf{Het probleem:}
+    \textbf{\textcolor{hogent-blue}{Het probleem:}}
     \begin{itemize}
         \item Contracten werden afgedrukt, handmatig getekend en weer ingescanned.
-        \item Dit proces was tijdrovend, foutgevoelig en administratief zwaar.
-        \item Geen centrale opvolging van wie wat getekend heeft.
+        \item Proces was tijdrovend, foutgevoelig en administratief zwaar.
+        \item Geen centrale opvolging.
     \end{itemize}
 
     \section{Doelstelling}
     Het realiseren van een **digitale handtekeningmodule** die naadloos integreert in Recytix.
     
-    \textbf{Vereisten:}
-    \begin{enumerate}
-        \item \textbf{Rechtsgeldig:} Identificatie via 2FA (SMS of Itsme).
-        \item \textbf{Gebruiksvriendelijk:} Geen externe software nodig voor de klant.
-        \item \textbf{Traceerbaar:} Volledige Audit Trail (Logboek).
-    \end{enumerate}
-
-    \section{Technologie-stack}
-    De module is gebouwd met de standaard technologieën van IRC Engineering:
-    
-    \begin{center}
-        \begin{tabular}{ll}
-            \toprule
-            \textbf{Frontend} & React (TypeScript) \\
-            \textbf{Backend} & C\# .NET Web API \\
-            \textbf{Database} & PostgreSQL \\
-            \textbf{Auth} & Smstools API \& Itsme \\
-            \bottomrule
-        \end{tabular}
-    \end{center}
-
-    % --- KOLOM 2 ---
-    \section{De Oplossing: User Journey}
-    De eindgebruiker doorloopt een intuïtief stappenplan:
-
-    \textbf{1. Notificatie}
-    Bij het inloggen ziet de gebruiker direct een 'Toast'-melding: *"U heeft 5 openstaande contracten"*.
-    
-    \textbf{2. Inzage \& Keuze}
-    De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard met keuze voor verificatie.
-
-    % SCREENSHOT WIZARD
-    % Let op: zorg dat sms.png bestaat in gradproef/img/
-    \begin{center}
-        \includegraphics[width=0.9\linewidth]{../gradproef/img/sms.png}
-    \end{center}
-
-    \textbf{3. Verificatie (2FA)}
+    \vspace{0.5cm}
+    \textbf{De Vereisten:}
     \begin{itemize}
-        \item \textbf{SMS-flow:} Gebruiker ontvangt een 6-cijferige code op zijn GSM en voert deze in.
-        \item \textbf{Itsme-flow:} Gebruiker bevestigt zijn identiteit via de Itsme-app (Rijksregisternummer check).
+        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Rechtsgeldig:} Identificatie via 2FA (SMS of Itsme).
+        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Gebruiksvriendelijk:} Geen externe software nodig.
+        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Traceerbaar:} Volledige Audit Trail.
     \end{itemize}
 
-    \textbf{4. Afronding}
-    Het document krijgt de status \textbf{'Getekend'}. De audit trail wordt weggeschreven in de database.
+    \vspace{1cm}
 
-    % --- KOLOM 3 ---
-    \section{Technische Uitdagingen}
+    % --- TECH STACK IN EEN MOOI BLOK ---
+    \begin{techbox}{Technologie-stack}
+        De module is gebouwd binnen de bestaande stack:
+        \vspace{0.5cm}
+        \begin{center}
+            \begin{tabular}{ll}
+                \toprule
+                \textbf{Frontend} & React (TypeScript) \\
+                \textbf{Backend} & C\# .NET Web API \\
+                \textbf{Database} & PostgreSQL \\
+                \textbf{Auth} & Smstools API \& Itsme \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    \end{techbox}
+
+    % ================= KOLOM 2 =================
+    \section{De Oplossing: User Journey}
+    De eindgebruiker doorloopt een intuïtief proces.
+
+    \vspace{0.5cm}
     
-    % ITSME LOGO (Staat even in commentaar tot het bestand gevonden wordt)
-    % Haal het %-teken weg als je zeker weet dat het bestand er is!
+    % Visuele stappen met kleur
+    \textbf{\textcolor{hogent-blue}{1. Notificatie}} \\
+    Bij het inloggen ziet de gebruiker direct een 'Toast'-melding: \textit{"U heeft 5 openstaande contracten"}.
+    
+    \vspace{0.5cm}
+    
+    \textbf{\textcolor{hogent-blue}{2. Inzage \& Keuze}} \\
+    De gebruiker opent het document (PDF-preview) en klikt op "Ondertekenen". Er verschijnt een wizard.
+
+    \vspace{0.5cm}
+    
+    % SCREENSHOT (SMS.PNG)
     \begin{center}
-        % \includegraphics[width=0.4\linewidth]{../gradproef/img/itsme_logo.png}
+        \includegraphics[width=0.95\linewidth, frame]{../gradproef/img/sms.png}
     \end{center}
 
-    Een specifiek struikelblok was de integratie met **Itsme**. 
-    
-    De authenticatie-flow van Itsme vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
-    
-    \textbf{Oplossing:}
-    Tijdens de ontwikkeling moest voor elke test van de Itsme-flow de applicatie effectief **gedeployed** worden naar de online testomgeving op de Linux-servers van Recytix. Dit vroeg om een gedisciplineerde 'Build \& Deploy' cyclus.
+    \vspace{0.5cm}
 
-    \section{Conclusie}
-    De doelstellingen zijn niet alleen behaald, maar **overtroffen**.
-    
+    \textbf{\textcolor{hogent-blue}{3. Verificatie (2FA)}} 
     \begin{itemize}
-        \item \textbf{SMS \& Itsme:} Oorspronkelijk was enkel SMS voorzien, maar door een vlotte progressie is ook Itsme gerealiseerd.
-        \item \textbf{Schaalbaar:} De module is generiek opgezet en meertalig (NL/FR/DE).
-        \item \textbf{Klaar voor productie:} De oplossing draait succesvol binnen de Recytix-architectuur.
-    \end{itemize} % HIER WAS DE FOUT (\end{itemize} ipv </itemize>)
+        \item \textbf{SMS-flow:} Code via GSM.
+        \item \textbf{Itsme-flow:} Bevestiging via App.
+    \end{itemize}
+
+    \vspace{0.5cm}
+
+    \textbf{\textcolor{hogent-blue}{4. Afronding}} \\
+    Status wordt \textbf{'Getekend'}. Audit trail wordt opgeslagen.
+
+    % ================= KOLOM 3 =================
+    \section{Technische Uitdagingen}
+    
+    % ITSME LOGO (Nu uit commentaar gehaald en mooi gepositioneerd)
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{../gradproef/img/itsme_logo.png}
+    \end{center}
+
+    Een specifiek struikelblok was de integratie met **Itsme**. De authenticatie-flow vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
+    
+    \vspace{0.5cm}
+    \textbf{\textcolor{hogent-pink}{De Oplossing:}} \\
+    Een gedisciplineerde 'Build \& Deploy' cyclus naar de Linux-testservers van Recytix voor elke test.
+
+    \vspace{2cm}
+
+    % --- CONCLUSIE IN EEN OPVALLEND BLOK ---
+    \begin{conclusionbox}{Conclusie}
+        De doelstellingen zijn \textbf{ruimschoots behaald}.
+        \begin{itemize}
+            \item \textbf{SMS \& Itsme:} Beide methodes werken naadloos.
+            \item \textbf{Schaalbaar:} Generiek en meertalig opgezet.
+            \item \textbf{Productieklaar:} Draait succesvol in de cloud.
+        \end{itemize}
+    \end{conclusionbox}
     
     \vspace{2cm}
     \centering
-    % RECYTIX LOGO
-    \includegraphics[width=0.7\linewidth]{../gradproef/img/recytix_logo.png}
+    \includegraphics[width=0.6\linewidth]{../gradproef/img/recytix_logo.png}
 
 \end{multicols}
 
