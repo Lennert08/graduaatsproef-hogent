@@ -4,23 +4,19 @@
 \usepackage{booktabs}
 \usepackage{wrapfig}
 \usepackage[dutch]{babel}
-% Nieuwe pakketten voor de layout:
 \usepackage{tcolorbox} 
-\usepackage{pifont} % Voor mooie vinkjes
-\usepackage{amssymb} % Voor wiskundige symbolen
+\usepackage{pifont} % Voor mooie vinkjes (zonder amssymb conflict)
 
 % --- CONFIGURATIE VAN DE KLEURBLOKKEN ---
-% Een blauw blok voor technische info
 \newtcolorbox{techbox}[1]{
-    colback=hogent-grey!10, % Lichte achtergrond
-    colframe=hogent-blue,   % HOGENT blauwe rand
+    colback=hogent-grey!10, 
+    colframe=hogent-blue,   
     title=#1, 
     fonttitle=\bfseries\Large,
     boxrule=2pt,
     arc=5pt
 }
 
-% Een oranje blok voor de conclusie (opvallend!)
 \newtcolorbox{conclusionbox}[1]{
     colback=hogent-ochre!10, 
     colframe=hogent-ochre,
@@ -61,14 +57,14 @@
     \vspace{0.5cm}
     \textbf{De Vereisten:}
     \begin{itemize}
-        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Rechtsgeldig:} Identificatie via 2FA (SMS of Itsme).
-        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Gebruiksvriendelijk:} Geen externe software nodig.
-        \item[\textcolor{hogent-darkgreen}{\checkmark}] \textbf{Traceerbaar:} Volledige Audit Trail.
+        \item[\textcolor{hogent-darkgreen}{\ding{51}}] \textbf{Rechtsgeldig:} Identificatie via 2FA (SMS of Itsme).
+        \item[\textcolor{hogent-darkgreen}{\ding{51}}] \textbf{Gebruiksvriendelijk:} Geen externe software nodig.
+        \item[\textcolor{hogent-darkgreen}{\ding{51}}] \textbf{Traceerbaar:} Volledige Audit Trail.
     \end{itemize}
 
     \vspace{1cm}
 
-    % --- TECH STACK IN EEN MOOI BLOK ---
+    % --- TECH STACK ---
     \begin{techbox}{Technologie-stack}
         De module is gebouwd binnen de bestaande stack:
         \vspace{0.5cm}
@@ -90,7 +86,6 @@
 
     \vspace{0.5cm}
     
-    % Visuele stappen met kleur
     \textbf{\textcolor{hogent-blue}{1. Notificatie}} \\
     Bij het inloggen ziet de gebruiker direct een 'Toast'-melding: \textit{"U heeft 5 openstaande contracten"}.
     
@@ -103,7 +98,7 @@
     
     % SCREENSHOT (SMS.PNG)
     \begin{center}
-        \includegraphics[width=0.95\linewidth, frame]{../gradproef/img/sms.png}
+        \includegraphics[width=0.95\linewidth]{../gradproef/img/sms.png}
     \end{center}
 
     \vspace{0.5cm}
@@ -122,9 +117,10 @@
     % ================= KOLOM 3 =================
     \section{Technische Uitdagingen}
     
-    % ITSME LOGO (Nu uit commentaar gehaald en mooi gepositioneerd)
+    % ITSME LOGO (TIJDELIJK IN COMMENTAAR)
+    % Haal het %-teken weg zodra het bestand er is!
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{../gradproef/img/itsme_logo.png}
+        % \includegraphics[width=0.5\linewidth]{../gradproef/img/itsme_logo.png}
     \end{center}
 
     Een specifiek struikelblok was de integratie met **Itsme**. De authenticatie-flow vereist strikte veiligheidsprotocollen (HTTPS) en werkt \textbf{niet op localhost}.
@@ -135,7 +131,7 @@
 
     \vspace{2cm}
 
-    % --- CONCLUSIE IN EEN OPVALLEND BLOK ---
+    % --- CONCLUSIE ---
     \begin{conclusionbox}{Conclusie}
         De doelstellingen zijn \textbf{ruimschoots behaald}.
         \begin{itemize}
